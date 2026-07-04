@@ -1,9 +1,9 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BY Solutions YM GENV — The Future of AI</title>
+<title>Our Plans & Pricing</title>
 <style>
   :root{
     --bg: #060c1c;
@@ -565,19 +565,82 @@
 
   <main>
     <div class="title-block">
-      <h1>BY Solutions YM GENV</h1>
-      <p class="subtitle">The Future of AI — turned into stunning visual reality.</p>
+      <h1>Plans &amp; Pricing</h1>
+      <p class="subtitle">Everything you need to know, at a glance.</p>
     </div>
 
-    <div class="content-card">
-      <p>We specialize in creating custom video content through advanced AI, offering tiered plans to fit every creative need and budget. Whether you need a simple creation or a full-scale production, we are here to bring your vision to life.</p>
+    <div class="image-card">
+    </div>
+
+    <div class="plans-summary">
+      <div class="plan-box">
+        <div class="plan-num">1</div>
+        <h3>Creators Basics</h3>
+        <div class="plan-price">₹400 – ₹800</div>
+        <ul>
+          <li>You provide all photos and the script for the video</li>
+        </ul>
+        <button class="length-btn" onclick="toggleLength(this, 'len-1')">
+          Length of Video <span class="chevron">▾</span>
+        </button>
+        <ul class="length-list" id="len-1">
+          <li><span>30 sec</span><span>₹400</span></li>
+          <li><span>50 sec</span><span>₹500</span></li>
+          <li><span>1 min</span><span>₹600</span></li>
+          <li><span>2 min</span><span>₹700</span></li>
+          <li><span>3 min</span><span>₹800</span></li>
+        </ul>
+      </div>
+      <div class="plan-box">
+        <div class="plan-num">2</div>
+        <h3>Visionary Plus</h3>
+        <div class="plan-price">₹800 – ₹1500</div>
+        <ul>
+          <li>Choose whether we create the photo or the script</li>
+          <li>You provide one photo</li>
+        </ul>
+        <button class="length-btn" onclick="toggleLength(this, 'len-2')">
+          Length of Video <span class="chevron">▾</span>
+        </button>
+        <ul class="length-list" id="len-2">
+          <li><span>30 sec</span><span>₹800</span></li>
+          <li><span>50 sec</span><span>₹900</span></li>
+          <li><span>1 min</span><span>₹1,000</span></li>
+          <li><span>2 min</span><span>₹1,500</span></li>
+        </ul>
+      </div>
+      <div class="plan-box">
+        <div class="plan-num">3</div>
+        <h3>Empire Builder</h3>
+        <div class="plan-price">₹1500 – ₹3000</div>
+        <ul>
+          <li>We create both the photos and the script</li>
+          <li>You provide one photo</li>
+        </ul>
+        <button class="length-btn" onclick="toggleLength(this, 'len-3')">
+          Length of Video <span class="chevron">▾</span>
+        </button>
+        <ul class="length-list" id="len-3">
+          <li><span>30 sec</span><span>₹1,500</span></li>
+          <li><span>50 sec</span><span>₹2,000</span></li>
+          <li><span>1 min</span><span>₹2,500</span></li>
+          <li><span>2 min</span><span>₹3,000</span></li>
+        </ul>
+      </div>
     </div>
 
     <div class="actions">
-      <a class="btn btn-primary" href="plans.html">View Our Plans</a>
-      <a class="btn" href="video-examples.html">See Video Examples</a>
-      <a class="btn" href="about.html">About Us</a>
-      <a class="btn" href="contact.html">Get in Touch</a>
+      <a class="btn btn-primary"
+         href="mailto:info@bysolutions.in?subject=Question%20about%20plans%20%26%20pricing%20-%20BYSolutionsYMGENV&body=HI%20BY%20Solutions%20YM%20GENV%20Team%2C%0A%0AI%20want%20to%20know%20more%20about%20the%20plans%2C%20so%20when%20can%20we%20schedule%20a%20meeting%3F"
+         id="emailBtn"
+         onclick="return openGmailApp(event)">
+        ✉️ Email Us
+      </a>
+      <a class="btn"
+         href="tel:+919982688192"
+         id="callBtn">
+        📞 Call Us
+      </a>
     </div>
   </main>
 
@@ -587,7 +650,46 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    function toggleLength(btn, listId) {
+      const list = document.getElementById(listId);
+      const isOpen = list.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+    }
+
+    function openGmailApp(e) {
+      e.preventDefault();
+      const to = "info@bysolutions.in";
+      const subject = "Question about plans & pricing - BYSolutionsYMGENV";
+      const body = "HI BY Solutions YM GENV Team,\n\nI want to know more about the plans, so when can we schedule a meeting?";
+
+      const gmailAppUrl = "googlegmail:///co?to=" + encodeURIComponent(to) +
+                          "&subject=" + encodeURIComponent(subject) +
+                          "&body=" + encodeURIComponent(body);
+
+      const mailtoUrl = "mailto:" + encodeURIComponent(to) +
+                         "?subject=" + encodeURIComponent(subject) +
+                         "&body=" + encodeURIComponent(body);
+
+      let didHide = false;
+      const onVisibilityChange = () => {
+        if (document.hidden) { didHide = true; }
+      };
+      document.addEventListener('visibilitychange', onVisibilityChange);
+
+      window.location.href = gmailAppUrl;
+
+      setTimeout(() => {
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        if (!didHide) {
+          // Gmail app didn't open (not installed) — fall back to default mail handler
+          window.location.href = mailtoUrl;
+        }
+      }, 600);
+
+      return false;
+    }
   </script>
 
 </body>
-</html> -->
+</html>
